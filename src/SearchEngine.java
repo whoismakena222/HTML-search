@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Scanner;
+
 
 public class SearchEngine implements ActionListener {
 
@@ -16,6 +16,7 @@ public class SearchEngine implements ActionListener {
     private JTextField text1, text2;
     private JTextArea text3;
     private int linkCounter;
+    private boolean images;
 
 
 
@@ -83,7 +84,14 @@ public class SearchEngine implements ActionListener {
                     if (spaceIndex == -1) spaceIndex = line.length();
                     String link = line.substring(linkIndex, spaceIndex);
 
-                    if (link.contains(s)) {
+                    if(link.contains("images")){
+                        images = true;
+                    }
+                    else{
+                        images = false;
+                    }
+
+                    if (link.contains(s) && images == false) {
                         linkCounter ++;
                         System.out.println(linkCounter + ". " + link);
                         text3.append(linkCounter + ". " + link + "\n");
